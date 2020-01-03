@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Timeline API</title>
+</head>
+<body>
+  <div id="wrapper">
+    <h1>Timeline API</h1>
+    <div class="sign_up">
+      <h2>ユーザー登録</h2>
+      <form id="sign_up">
+        <input type="text" id="sign_up_name" placeholder="名前を入れてね" required>
+        <input type="text" id="sign_up_bio" placeholder="自己紹介を入れてね" required>
+        <input type="email" id="sign_up_email" placeholder="email" required>
+        <input type="password" id="sign_up_password" placeholder="password" required>
+        <input type="password" id="sign_up_password_confirmation" placeholder="password" required>
+        <button type="submit" id="sign_up_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="sign_in">
+      <h2>ユーザーログイン</h2>
+      <form id="sign_in">
+        <input type="email" id="sign_in_email" placeholder="email" required>
+        <input type="password" id="sign_in_password" placeholder="password" required>
+        <input type="password" id="sign_in_password_confirmation" placeholder="password" required>
+        <button type="submit" id="sign_in_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="users">
+      <h2>ユーザー一覧</h2>
+      <form id="users">
+        <input type="text" id="users_page" placeholder="page" required>
+        <input type="text" id="users_limit" placeholder="limit" required>
+        <input type="text" id="users_query" placeholder="query">
+        <button type="submit" id="users_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="user_edit">
+      <h2>ユーザー編集</h2>
+      <form id="user_edit">
+        <input type="text" id="user_edit_id" placeholder="ユーザーID" required>
+        <input type="text" id="user_edit_name" placeholder="名前を入れてね" required>
+        <input type="text" id="user_edit_bio" placeholder="自己紹介を入れてね" required>
+        <button type="submit" id="user_edit_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="delete">
+      <h2>ユーザー削除</h2>
+      <form id="delete">
+        <input type="text" id="delete_id" placeholder="ユーザーID" required>
+        <button type="submit" id="delete_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="timeline">
+      <h2>タイムライン</h2>
+      <form id="timeline">
+        <input type="text" id="timeline_id" placeholder="ユーザーID" required>
+        <input type="text" id="timeline_page" placeholder="page" required>
+        <input type="text" id="timeline_limit" placeholder="limit" required>
+        <input type="text" id="timeline_query" placeholder="query">
+        <button type="submit" id="timeline_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="post">
+      <h2>投稿作成</h2>
+      <form id="post">
+        <input type="text" id="post_text" placeholder="text" required>
+        <button type="submit" id="post_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="edit_post">
+      <h2>投稿編集</h2>
+      <form id="edit_post">
+        <input type="text" id="edit_post_id" placeholder="投稿ID" required>
+        <input type="text" id="edit_post_text" placeholder="text" required>
+        <button type="submit" id="edit_post_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="delete_post">
+      <h2>投稿削除</h2>
+      <form id="delete_post">
+        <input type="text" id="delete_post_id" placeholder="投稿ID" required>
+        <button type="submit" id="delete_post_submit">送信</button>
+      </form>
+    </div>
+
+    <div class="all_posts">
+      <h2>投稿一覧</h2>
+      <form id="all_posts">
+        <input type="text" id="all_posts_page" placeholder="page" required>
+        <input type="text" id="all_posts_limit" placeholder="limit" required>
+        <input type="text" id="all_posts_query" placeholder="query">
+        <button type="submit" id="all_posts_submit">送信</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
