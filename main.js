@@ -60,10 +60,21 @@
       })
     }
   }
-
+  // ローカルストレージリセット
+  const removeItem = (key) => {
+    window.localStorage.removeItem(key);
+  }
+  const localReset = () => {
+    removeItem('token');
+    removeItem('id');
+    removeItem('bio');
+    removeItem('name');
+    removeItem('postId');
+  }
   // ユーザー登録
   document.getElementById("sign_up_submit").addEventListener("click", (event) => {
     event.preventDefault();
+    localReset();
     const signUpUrl = 'https://teachapi.herokuapp.com/sign_up';
     const signUpParams = {
       sign_up_user_params: {
