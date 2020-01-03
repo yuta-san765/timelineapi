@@ -60,7 +60,7 @@
       })
     }
   }
-  // ローカルストレージリセット
+  // ローカルストレージリセット用
   const removeItem = (key) => {
     window.localStorage.removeItem(key);
   }
@@ -78,14 +78,17 @@
     const signUpUrl = 'https://teachapi.herokuapp.com/sign_up';
     const signUpParams = {
       sign_up_user_params: {
-        name: document.getElementById("sign_up_name").nodeValue,
-        bio: document.getElementById("sign_up_bio").nodeValue,
-        email: document.getElementById("sign_up_email").nodeValue,
-        password: document.getElementById("sign_up_password").nodeValue,
-        password_confirmation: document.getElementById("sign_up_password_confirmation").nodeValue
+        name: document.getElementById("sign_up_name").value,
+        bio: document.getElementById("sign_up_bio").value,
+        email: document.getElementById("sign_up_email").value,
+        password: document.getElementById("sign_up_password").value,
+        password_confirmation: document.getElementById("sign_up_password_confirmation").value
       }
     };
     fetchWrap("sign_up", "POST", false, signUpUrl, signUpParams);
+    console.log(signUpUrl);
+    console.log(signUpParams);
+    console.log(document.getElementById("sign_up_name").value);
   });
 
   // ユーザーログイン
@@ -94,9 +97,9 @@
     const signInUrl = 'https://teachapi.herokuapp.com/sign_in';
     const signInParams = {
       sign_in_user_params: {
-        email: document.getElementById("sign_in_email").nodeValue,
-        password: document.getElementById("sign_in_password").nodeValue,
-        password_confirmation: document.getElementById("sign_in_password_confirmation").nodeValue
+        email: document.getElementById("sign_in_email").value,
+        password: document.getElementById("sign_in_password").value,
+        password_confirmation: document.getElementById("sign_in_password_confirmation").value
       }
     };
     fetchWrap("sign_in", "POST", false, signInUrl, signInParams);
@@ -107,9 +110,9 @@
     event.preventDefault();
     const usersUrl = 'https://teachapi.herokuapp.com/users';
     const usersParams = {
-      page: document.getElementById("users_page").nodeValue,
-      limit: document.getElementById("users_limit").nodeValue,
-      query: document.getElementById("users_query").nodeValue
+      page: document.getElementById("users_page").value,
+      limit: document.getElementById("users_limit").value,
+      query: document.getElementById("users_query").value
     };
     const usersQs = new URLSearchParams(usersParams);
     fetchWrap("users", "GET", true, `${usersUrl}?${usersQs}`);
@@ -118,11 +121,11 @@
   // ユーザー編集
   document.getElementById("user_edit_submit").addEventListener("click", (event) => {
     event.preventDefault();
-    const userEditUrl = `https://teachapi.herokuapp.com/users/${document.getElementById("user_edit_id").nodeValue}`;
+    const userEditUrl = `https://teachapi.herokuapp.com/users/${document.getElementById("user_edit_id").value}`;
     const userEditParams = {
       user_params: {
-        name: document.getElementById("user_edit_name").nodeValue,
-        bio: document.getElementById("user_edit_bio").nodeValue
+        name: document.getElementById("user_edit_name").value,
+        bio: document.getElementById("user_edit_bio").value
       }
     };
     fetchWrap("user_edit", "PUT", true, userEditUrl, userEditParams);
@@ -131,18 +134,18 @@
   // ユーザー削除
   document.getElementById("delete_submit").addEventListener("click", (event) => {
     event.preventDefault();
-    const deleteUrl = `https://teachapi.herokuapp.com/users/${document.getElementById("delete_id").nodeValue}`;
+    const deleteUrl = `https://teachapi.herokuapp.com/users/${document.getElementById("delete_id").value}`;
     fetchWrap("deleteUrl", "DELETE", true, deleteUrl);
   });
 
   // ユーザーのタイムライン
   document.getElementById("timeline_submit").addEventListener("click", (event) => {
     event.preventDefault();
-    const timelineUrl = `https://teachapi.herokuapp.com/users/${document.getElementById("timeline_id").nodeValue}/timeline`;
+    const timelineUrl = `https://teachapi.herokuapp.com/users/${document.getElementById("timeline_id").value}/timeline`;
     const timelineParams = {
-      page: document.getElementById("timeline_page").nodeValue,
-      limit: document.getElementById("timeline_limit").nodeValue,
-      query: document.getElementById("timeline_query").nodeValue
+      page: document.getElementById("timeline_page").value,
+      limit: document.getElementById("timeline_limit").value,
+      query: document.getElementById("timeline_query").value
     };
     const timelineQs = new URLSearchParams(timelineParams);
     fetchWrap("timeline", "GET", true, `${timelineUrl}?${timelineQs}`);
@@ -154,7 +157,7 @@
     const postUrl = 'https://teachapi.herokuapp.com/posts';
     const postParams = {
       post_params: {
-        text: document.getElementById("post_text").nodeValue,
+        text: document.getElementById("post_text").value,
       }
     };
     fetchWrap("post", "POST", true, postUrl, postParams);
@@ -163,10 +166,10 @@
   // 投稿編集
   document.getElementById("edit_post_submit").addEventListener("click", (event) => {
     event.preventDefault();
-    const editPostUrl = `https://teachapi.herokuapp.com/posts/${document.getElementById("edit_post_id").nodeValue}`;
+    const editPostUrl = `https://teachapi.herokuapp.com/posts/${document.getElementById("edit_post_id").value}`;
     const editPostParams = {
       post_params: {
-        text: document.getElementById("edit_post_text").nodeValue
+        text: document.getElementById("edit_post_text").value
       }
     };
     fetchWrap("edit_post", "PUT", true, editPostUrl, editPostParams);
@@ -175,8 +178,8 @@
   // 投稿削除
   document.getElementById("delete_post_submit").addEventListener("click", (event) => {
     event.preventDefault();
-    const deletePostUrl = `https://teachapi.herokuapp.com/posts/${document.getElementById("delete_post_id").nodeValue}`;
-    fetchWrap("delete_post", "DELETE", ture, deletePostUrl);
+    const deletePostUrl = `https://teachapi.herokuapp.com/posts/${document.getElementById("delete_post_id").value}`;
+    fetchWrap("delete_post", "DELETE", true, deletePostUrl);
   });
 
   // 投稿一覧
@@ -184,9 +187,9 @@
     event.preventDefault();
     const allPostsUrl = 'https://teachapi.herokuapp.com/posts';
     const allPostsParamas = {
-      page: document.getElementById("all_posts_page").nodeValue,
-      limit: document.getElementById("all_posts_limit").nodeValue,
-      query: document.getElementById("all_posts_query").nodeValue
+      page: document.getElementById("all_posts_page").value,
+      limit: document.getElementById("all_posts_limit").value,
+      query: document.getElementById("all_posts_query").value
     };
     const allPostsQs = new URLSearchParams(allPostsParamas);
     fetchWrap("allPostsUrl", "GET", true, `${allPostsUrl}?${allPostsQs}`);
