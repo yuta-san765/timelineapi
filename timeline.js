@@ -9,6 +9,7 @@
   // ユーザー登録
   document.getElementById('sign_up_submit').addEventListener('click', (e) => {
     e.preventDefault();
+    localStorage.clear();
     const signUpParams = {
       sign_up_user_params: {
         name: document.getElementById('sign_up_name').value,
@@ -28,6 +29,9 @@
     .then(json => {
       console.log(json);
       localStorage.token = json.token;
+      localStorage.id = json.id;
+      localStorage.name = json.name;
+      localStorage.bio = json.bio;
     }).catch(error => console.error(error))
   });
 
@@ -49,6 +53,9 @@
     .then(json => {
       console.log(json);
       localStorage.token = json.token;
+      localStorage.id = json.id;
+      localStorage.name = json.name;
+      localStorage.bio = json.bio;
     }).catch(error => {
       console.error(error);
     })
@@ -77,4 +84,55 @@
       console.error(error);
     })
   });
+
+  // ユーザー編集
+  const urlUsersEdit = `${urlUsers}/${localStorage.id}`;
+  document.getElementById('users_edit_submit').addEventListener('click', (e) => {
+    e.preventDefault();
+    const userEditParams = {
+      user_params: {
+        name: document.getElementById('users_edit_name').value,
+        bio: document.getElementById('users_edit_bio').value
+      }
+    };
+    fetch(urlUsersEdit, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      },
+      body: JSON.stringify(userEditParams)
+    }).then(response => response.json())
+    .then(json => {
+      console.log(json);
+      document.querySelector('.users_edit p').textContent = JSON.stringify(json);
+    }).catch(error => {
+      console.error(error);
+    })
+  });
+
+  // ユーザー削除
+  document.getElementById('user_delete_submit').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (window.confirm('本当に削除してよろしいですか？')) {
+      fetch(urlUsersEdit, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.token
+        }
+      }).then(response => response.json())
+      .then(json => {
+        console.log(json)
+        document.querySelector('.users_delete p').textContent = 'ユーザー削除しました';
+      }).catch(error => {
+        console.error(error);
+      })
+    } else {
+      document.querySelector('.users_delete p').textContent = '引き続きお楽しみください';
+    }
+
+  });
+
+
 }

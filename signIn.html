@@ -15,6 +15,7 @@
   <main>
     <!--ユーザー登録-->
     <div class="sign_up wrap">
+      <h2>ユーザー登録</h2>
       <form id="sign_up" action="">
         <input type="text" id="sign_up_name" placeholder="名前を入れてね" required>
         <input type="text" id="sign_up_bio" placeholder="自己紹介をしてね" required>
@@ -26,6 +27,7 @@
     </div>
     <!--ユーザーログイン-->
     <div class="sign_in wrap">
+      <h2>ユーザーログイン</h2>
       <form id="sign_in" action="">
         <input type="email" id="sign_in_email" placeholder="emailを入れてね" required>
         <input type="password" id="sign_in_password" placeholder="password" required>
@@ -35,13 +37,33 @@
     </div>
     <!--ユーザー一覧-->
     <div class="users wrap">
+      <h2>ユーザー一覧</h2>
       <form id="users">
         <input type="text" id="users_page" placeholder="page">
         <input type="text" id="users_limit" placeholder="limit">
         <input type="text" id="users_query" placeholder="query">
         <button type="submit" id="users_submit">送信</button>
       </form>
-      <p>result</p>
+      <p></p>
+    </div>
+    <!--ユーザー編集-->
+    <div class="users_edit wrap">
+      <h2>ユーザー編集</h2>
+      <form action="" id="users_edit">
+        <input type="text" id="users_edit_id" placeholder="IDを入れてね">
+        <input type="text" id="users_edit_name" placeholder="新しい名前を入れてね" required>
+        <input type="text" id="users_edit_bio" placeholder="新しい自己紹介を入れてね" required>
+        <button type="submit" id="users_edit_submit">送信</button>
+      </form>
+      <p></p>
+    </div>
+    <!--ユーザー削除-->
+    <div class="users_delete wrap">
+      <h2>ユーザー削除</h2>
+      <form action="" id="user_delete">
+        <button type="submit" id="user_delete_submit">本当に削除しますか？</button>
+      </form>
+      <p></p>
     </div>
   </main>
   <footer>
