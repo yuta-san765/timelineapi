@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>sign in</title>
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+  <header>
+    <h1>Timeline API</h1>
+
+  </header>
+  <main>
+    <!--ユーザー登録-->
+    <div class="sign_up wrap">
+      <form id="sign_up" action="">
+        <input type="text" id="sign_up_name" placeholder="名前を入れてね" required>
+        <input type="text" id="sign_up_bio" placeholder="自己紹介をしてね" required>
+        <input type="email" id="sign_up_email" placeholder="emailを入れてね" required>
+        <input type="password" id="sign_up_password" placeholder="password" required>
+        <input type="password" id="sign_up_password_confirmation" placeholder="password" required>
+        <button type="submit" id="sign_up_submit">送信</button>
+      </form>
+    </div>
+    <!--ユーザーログイン-->
+    <div class="sign_in wrap">
+      <form id="sign_in" action="">
+        <input type="email" id="sign_in_email" placeholder="emailを入れてね" required>
+        <input type="password" id="sign_in_password" placeholder="password" required>
+        <input type="password" id="sign_in_password_confirmation" placeholder="password" required>
+        <button type="submit" id="sign_in_submit">送信</button>
+      </form>
+    </div>
+    <!--ユーザー一覧-->
+    <div class="users wrap">
+      <form id="users">
+        <input type="text" id="users_page" placeholder="page">
+        <input type="text" id="users_limit" placeholder="limit">
+        <input type="text" id="users_query" placeholder="query">
+        <button type="submit" id="users_submit">送信</button>
+      </form>
+      <p>result</p>
+    </div>
+  </main>
+  <footer>
+
+  </footer>
+  <script src="timeline.js"></script>
+</body>
+</html>
