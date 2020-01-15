@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" style="font-size: 15px;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+  <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/index.css">
+  <title>デザイン込API</title>
+</head>
+<body>
+  <div class="sign_in">
+    <div class="header-container">
+      <div class="logo"><img class="logo-icon" src="../img/code.png"></div>
+      <div class="title"><h1>Log in to OkaChat</h1></div>
+    </div>
+    <form action="" id="sign_in">
+      <div class="input-cover">
+        <label class="input-label" for="sign_in_email">
+          <div class="input-indication">
+            <span>email</span>
+          </div>
+          <div class="input-area">
+            <input type="email" id="sign_in_email" placeholder="email" required>
+          </div>
+        </label>
+      </div>
+      <div class="input-cover">
+        <label class="input-label" for="sign_in_password">
+          <div class="input-indication">
+            <span>パスワード</span>
+          </div>
+          <div class="input-area">
+            <input type="password" id="sign_in_password" placeholder="password" required>
+          </div>
+        </label>
+      </div>
+      <div class="input-cover">
+        <label class="input-label" for="sign_in_password_confirmation">
+          <div class="input-indication">
+            <span>パスワード再入力</span>
+          </div>
+          <div class="input-area">
+            <input type="password" id="sign_in_password_confirmation" placeholder="password" required>
+          </div>
+        </label>
+      </div>
+      <div class="btn-cover">
+        <button type="submit" id="sign_in_submit">Log in</button>
+      </div>
+    </form>
+    <div class="btn-cover">
+      <button class="sign_up_button" id="js-show-popup">新規登録</button>
+    </div>
+  </div>
+  <div class="sign_up_popup" id="js-popup">
+    <div class="popup-inner">
+      <div class="close-btn" id="js-close-btn"><i class="fa fa-times"></i></div>
+      <form action="" id="sign_up">
+        <span style="color: #8899a6;">Fill in the blank</span>
+        <div class="input-cover">
+          <label class="input-label" for="sign_up_name">
+            <div class="input-indication">
+              <span>name</span>
+            </div>
+            <div class="input-area">
+              <input type="text" id="sign_up_name" placeholder="name" required>
+            </div>
+          </label>
+        </div>
+        <div class="input-cover">
+          <label class="input-label" for="sign_up_bio">
+            <div class="input-indication">
+              <span>biology</span>
+            </div>
+            <div class="input-area">
+              <input type="text" id="sign_up_bio" placeholder="biology" required>
+            </div>
+          </label>
+        </div>
+        <div class="input-cover">
+          <label class="input-label" for="sign_up_email">
+            <div class="input-indication">
+              <span>email</span>
+            </div>
+            <div class="input-area">
+              <input type="email" id="sign_up_email" placeholder="email" required>
+            </div>
+          </label>
+        </div>
+        <div class="input-cover">
+          <label class="input-label" for="sign_up_password">
+            <div class="input-indication">
+              <span>password</span>
+            </div>
+            <div class="input-area">
+              <input type="passowrd" id="sign_up_password" placeholder="password" required>
+            </div>
+          </label>
+        </div>
+        <div class="input-cover">
+          <label class="input-label" for="sign_up_password_confirmation">
+            <div class="input-indication">
+              <span>repeat password</span>
+            </div>
+            <div class="input-area">
+              <input type="password" id="sign_up_password-confirmation" placeholder="password" required>
+            </div>
+          </label>
+        </div>
+        <div class="btn-cover">
+          <button class="sign_up_button" type="submit" id="sign_up_submit">登録します</button>
+        </div>
+      </form>
+    </div>
+    <div class="black-background" id="js-black-bg"></div>
+  </div>
+  <script src="../js/master.js"></script>
+</body>
+</html>
