@@ -1,8 +1,10 @@
 'use strict';
 {
+  // エンドポイントの用意
+  const postsUrl = 'https://teachapi.herokuapp.com/posts';
+
   // ロード時にタイムライン表示
   window.onload = function(){
-    const postsUrl = 'https://teachapi.herokuapp.com/posts';
     const postsParamas = {
       page: 1,
       limit: '',
@@ -62,5 +64,30 @@
     .catch(error => {
       console.error(error);
     })
-  }
+  };
+
+  // 投稿作成
+  document.getElementById('post_submit').addEventListener('click', (e) => {
+    e.preventDefault();
+    const postParams = {
+      post_params: {
+        text: document.getElementById('post_text').value
+      }
+    };
+    fetch(postsUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      },
+      body: JSON.stringify(postParams)
+    }).then(response => response.json())
+    .then(json => {
+      console.log(json);
+      window.alert('投稿しました');
+      location.reload();
+    }).catch(error => {
+      console.error(error);
+    })
+  });
 }

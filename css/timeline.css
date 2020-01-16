@@ -84,7 +84,7 @@ table {
 hr {
     display:block;
     height:1px;
-    border:0;  
+    border:0;
     border-top:1px solid #cccccc;
     margin:1em 0;
     padding:0;
@@ -242,6 +242,8 @@ body {
 .for-name {
   font-weight: 700;
   color: white;
+  line-height: 22px;
+  text-decoration: underline;
 }
 .for-bio {
   color: #8899a6;
