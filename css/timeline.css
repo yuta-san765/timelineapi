@@ -1,20 +1,249 @@
-p {
-  margin: 0;
+/* reset css */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
 }
 
 body {
-  margin: 0;
-  background: rgba(21, 32, 43);
-  box-sizing: border-box;
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;  
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+/* css for timeline */
+
+html {
   font-family: Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 15px;
+  background: rgba(21, 32, 43);
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
   color: white;
   overflow-y: scroll;
   height: 100%;
   display: block;
-  font-size: 15px;
 }
 
-.root-container {
+.root-containers {
   height: 100%;
   display: flex;
+}
+
+.flex-containers {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.column {
+  height: 100vh;
+  width: 100vw;
+}
+
+.left-column {
+  align-items: flex-end;
+  text-align: right;
+
+}
+.side-items {
+  padding: 0 20px;
+  justify-content: space-between;
+}
+.logo-icon {
+  height: 50px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.side-links {
+  margin-top: 2px;
+  margin-bottom: 5px;
+
+}
+
+.side-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.center-column {
+
+  border-right: solid 1px #37444c;
+  border-left: solid 1px #37444c;
+  overflow-y: scroll;
+}
+
+.center-column-contents {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-line {
+  height: 53px;
+  line-height: 53px;
+  padding: 0 15px;
+  position: sticky;
+  border-bottom: solid 1px #37444c;
+  z-index: 3;
+}
+.top-line h1 {
+  font-size: 19px;
+  font-weight: 800;
+}
+.post-box {
+  height: 140px;
+  border-bottom: solid 10px #37444c;
+  display: flex;
+}
+
+.picture-circle {
+  margin: 12px 15px 0;
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  border: solid 1px white;
+  min-width: 49px;
+}
+
+.post-text  {
+  padding-top: 25px;
+  background-color: rgba(21, 32, 43);
+  color: white;
+  border: none;
+  width: 100%;
+}
+
+.btn {
+  width: 75px;
+  height: 40px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  margin-bottom: 5px;
+  margin-right: 15px;
+  margin-left: auto;
+  display: block;
+}
+
+.btn-post {
+  color: white;
+  background-color: rgb(24, 190, 99);
+}
+
+.btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.for-img {
+  margin: 12px 15px 0;
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  min-width: 49px;
+  border: solid 1px white;
+}
+.for-posts {
+  padding: 12px 0 0;
+}
+.posted-items {
+  border-bottom: solid 1px #37444c;
+  padding-bottom: 10px;
+  display: flex;
+  display: none;
+}
+.for-name {
+  font-weight: bold;
+  color: white;
+}
+.for-bio {
+  color: #8899a6;
 }

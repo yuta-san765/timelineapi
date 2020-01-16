@@ -5,14 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
   <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
   <link rel="stylesheet" href="../css/timeline.css">
   <title>デザイン込API | タイムライン</title>
 </head>
 <body>
   <div class="root-container">
-    tondayo
+    <div class="flex-containers">
+
+      <div class="column left-column">
+        <nav class="side-items">
+          <div class="logo-icon-container">
+            <a href="timeline.html"><img class="logo-icon" src="../img/code.png"></a>
+          </div>
+          <div class="side-links">
+            <div>
+              <a href="timeline.html"><i class="fas fa-home">&ensp;Timeline</i></a>
+            </div>
+            <div>
+              <a href="chatroom.html"><i class="fas fa-comments">&ensp;Chatroom</i></a>
+            </div>
+            <div>
+              <i class="fas fa-cog">&ensp;User&nbsp;Edit</i>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="column center-column">
+        <div class="center-column-contents">
+          <div class="top-line">
+            <h1>Home</h1>
+          </div>
+          <div class="post-box">
+            <div class="picture-circle"></div>
+            <div class="form-wrapper">
+              <form id="post">
+                <textarea class="post-text" name="post" cols="100" rows="4" maxlength="140" placeholder="what's happening?"></textarea>
+                <button class="btn btn-post" type="submit" id="post_submit">POST</button>
+              </form>
+            </div>
+          </div>
+          <main class="timeline">
+            <div class="posted-items" hidden>
+              <div class="for-img"></div>
+              <div class="for-posts">
+                <div class="for-name-bio">
+                  <span class="for-name"></span>
+                  <span class="for-bio"></span>
+                </div>
+                <div class="for-text"></div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <div class="column right-column">あ
+      </div>
+
+    </div>
   </div>
-  <script src="../js/master.js"></script>
+  <script src="../js/timeline.js"></script>
 </body>
 </html>
