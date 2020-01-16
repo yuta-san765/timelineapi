@@ -231,19 +231,22 @@ body {
   min-width: 49px;
   border: solid 1px white;
 }
-.for-posts {
+.for-post {
   padding: 12px 0 0;
 }
-.posted-items {
+.posted-item {
   border-bottom: solid 1px #37444c;
   padding-bottom: 10px;
   display: flex;
-  display: none;
 }
 .for-name {
-  font-weight: bold;
+  font-weight: 700;
   color: white;
 }
 .for-bio {
   color: #8899a6;
+}
+
+.for-text {
+  font-weight: 400;
 }
