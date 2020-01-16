@@ -1,7 +1,29 @@
 'use strict';
 {
+  // modal for uer edit
+  function popupImage() {
+    var popup = document.getElementById('js-popup');
+    if(!popup) return;
+
+    var blackBg = document.getElementById('js-black-bg');
+    var closeBtn = document.getElementById('js-close-btn');
+    var showBtn = document.getElementById('js-show-popup');
+
+    closePopUp(blackBg);
+    closePopUp(closeBtn);
+    closePopUp(showBtn);
+    function closePopUp(elem) {
+      if(!elem) return;
+      elem.addEventListener('click', function() {
+        popup.classList.toggle('is-show');
+      });
+    }
+  }
+  popupImage();
   // エンドポイントの用意
   const postsUrl = 'https://teachapi.herokuapp.com/posts';
+  const usersUrl = 'https://teachapi.herokuapp.com/users';
+
 
   // ロード時にタイムライン表示
   window.onload = function(){
@@ -90,4 +112,55 @@
       console.error(error);
     })
   });
+
+    // ユーザー編集
+    const usersEditUrl = `${usersUrl}/${localStorage.id}`;
+    document.getElementById('users_edit_submit').addEventListener('click', (e) => {
+      e.preventDefault();
+      const userEditParams = {
+        user_params: {
+          name: document.getElementById('users_edit_name').value,
+          bio: document.getElementById('users_edit_bio').value
+        }
+      };
+      fetch(usersEditUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.token
+        },
+        body: JSON.stringify(userEditParams)
+      }).then(response => response.json())
+      .then(json => {
+        console.log(json);
+
+      }).catch(error => {
+        console.error(error);
+      })
+    });
+
+    // ユーザー削除
+    document.getElementById('users_delete_submit').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (window.confirm('本当に削除してよろしいですか？')) {
+        fetch(usersEditUrl, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.token
+          }
+        }).then(response => response.json())
+        .then(json => {
+          console.log(json)
+          window.alert('ご利用ありがとうございました');
+          location.href = 'index.html';
+        }).catch(error => {
+          console.error(error);
+        })
+      } else {
+        window.alert('引き続きお楽しみ下さい');
+        location.href = 'timeline.html';
+      }
+    });
+  
 }

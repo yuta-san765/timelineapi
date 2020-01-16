@@ -27,7 +27,7 @@
               <a href="chatroom.html"><i class="fas fa-comments">&ensp;Chatroom</i></a>
             </div>
             <div>
-              <i class="fas fa-cog">&ensp;User&nbsp;Edit</i>
+              <i class="fas fa-cog cursor-pointer" id="js-show-popup">&ensp;User&nbsp;Edit</i>
             </div>
           </div>
         </nav>
@@ -54,6 +54,43 @@
       </div>
 
     </div>
+  </div>
+  <!-- modal for user edit -->
+  <div class="popup" id="js-popup">
+    <div class="popup-inner">
+      <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+      <form action="" id="user_edit">
+        <span style="color: #8899a6;">You can edit your profile</span>
+        <div class="input-cover">
+          <label class="input-label" for="users_edit_name">
+            <div class="input-indication">
+              <span>new name</span>
+            </div>
+            <div class="input-area">
+              <input type="text" id="users_edit_name" placeholder="name" required>
+            </div>
+          </label>
+        </div>
+        <div class="input-cover">
+          <label class="input-label" for="users_edit_bio">
+            <div class="input-indication">
+              <span>new biology</span>
+            </div>
+            <div class="input-area">
+              <input type="text" id="users_edit_bio" placeholder="biology" required>
+            </div>
+          </label>
+        </div>
+        <div class="btn-cover">
+          <button class="users_edit_button" type="submit" id="users_edit_submit">更新します</button>
+        </div>
+      </form>
+      <br>
+      <br>
+      <span style="color: #8899a6;">Delete account?</span>
+      <button class="btn-cover" type="submit" id="users_delete_submit">Are you sure?</button>
+    </div>
+    <div class="black-background" id="js-black-bg"></div>
   </div>
   <script src="../js/timeline.js"></script>
 </body>
