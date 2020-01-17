@@ -128,6 +128,29 @@
     </div>
     <div class="black-background" id="js-black-bg"></div>
   </div>
+  <!-- modal for post edit -->
+  <div class="popup" id="js-popup-post-edit">
+    <div class="popup-inner">
+      <div class="close-btn" id="js-close-btn-post-edit"><i class="fas fa-times"></i></div>
+      <form action="">
+        <span>投稿を編集できます</span>
+        <div class="input-cover">
+          <label class="input-label" for="users_edit_bio">
+            <div class="input-indication">
+            </div>
+            <div class="input-area">
+              <input type="text" id="users_post_edit" required>
+            </div>
+          </label>
+        </div>
+        <div class="btn-cover">
+          <button class="users_edit_button" type="submit" id="users_post_edit_submit">更新します</button>
+        </div>
+
+      </form>
+    </div>
+    <div class="black-background" id="js-black-bg-post-edit"></div>
+  </div>
   <script src="../js/timeline.js"></script>
 </body>
 </html>

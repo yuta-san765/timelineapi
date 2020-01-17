@@ -434,15 +434,18 @@ form input {
   height: 29px;
   background-color: #e8f0fe;
   padding: 2px 10px 5px;
+  box-sizing: border-box;
 }
 
 .btn-cover {
-  margin: 10px;
+  /* margin: 10px; */
 }
 
+
+/* kkkkkkkkkkkkkkk */
 #users_edit_submit {
   display: inline-block;
-  width: 100%;
+  width: calc(100% - 30px);
   color: white;
   font-weight: 700;
   background-color: rgba(24, 190, 99);
@@ -452,6 +455,7 @@ form input {
   border-radius: 25px;
   border: none;
   font-size: 15px;
+  margin: 10px 15px;
 }
 
 #users_edit_submit:hover {
@@ -549,4 +553,23 @@ form input {
   margin-left: auto;
   margin-right: auto;
   justify-content: space-around;
+}
+
+#users_post_edit_submit {
+  display: inline-block;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  background-color: rgba(24, 190, 99);
+  line-height: 1;
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 25px;
+  border: none;
+  font-size: 15px;
+}
+
+#users_post_edit_submit:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }

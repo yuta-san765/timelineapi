@@ -218,7 +218,7 @@ window.onload = function () {
                 </div>
                 <div class="for-text">${element.text}</div>
               </div>
-              <i class="far fa-edit cursor-pointer icon-post" onclick="postEdit(${element.id});"></i>
+              <i class="far fa-edit cursor-pointer icon-post" id="js-show-popup-post-edit${element.id}" onclick="popupPostEdit(${element.id});"></i>
               <i class="far fa-trash-alt cursor-pointer icon-post" onclick="postDelete(${element.id});"></i>
             </div>`;
         });
@@ -367,3 +367,29 @@ function postDelete(postId) {
     })
   }
 };
+
+// modal for post edit
+function popupPostEdit(id) {
+  var popup = document.getElementById('js-popup-post-edit');
+  if(!popup) return;
+
+  var blackBg = document.getElementById('js-black-bg-post-edit');
+  var closeBtn = document.getElementById('js-close-btn-post-edit');
+  var showBtn = document.getElementById(`js-show-popup-post-edit${id}`);
+
+  closePopUp(blackBg);
+  closePopUp(closeBtn);
+  closePopUp(showBtn);
+  function closePopUp(elem) {
+    if(!elem) return;
+    elem.addEventListener('click', function() {
+      popup.classList.toggle('is-show');
+    });
+  }
+}
+popupPostEdit();
+// 投稿編集
+// function postEdit(postId){
+//   const postUrlId = `${postsUrl}/${postId}`;
+  
+// }
