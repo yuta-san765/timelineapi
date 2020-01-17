@@ -25,15 +25,14 @@
   const usersUrl = 'https://teachapi.herokuapp.com/users';
 
 
-  // ロード時にタイムライン表示
+  // ロード時の表示
   window.onload = function(){
-
+    // ロード時に投稿表示
     const postsParamas = {
       page: 1,
       limit: '',
       query: ''
     };
-    
     const postsQs = new URLSearchParams(postsParamas);
     fetch(`${postsUrl}?${postsQs}`, {
       method: 'GET',
@@ -66,29 +65,11 @@
       });
       // console.log(timeLine);
       document.querySelector('.timeline').innerHTML = timeLine;
-      // for(let i = 0, len = json.length; i < len; i++){ //失敗の跡地
-      //   document.querySelector('.timeline').innerHTML = `
-      //   <div class="posted-item">
-      //     <div class="for-img"></div>
-      //     <div class="for-post">
-      //       <div class="for-name-bio">
-      //         <span class="for-name"></span>
-      //         <span class="for-bio"></span>
-      //       </div>
-      //       <div class="for-text"></div>
-      //     </div>
-      //   </div>`;
-      // //   document.querySelector('.for-name').textContent = json[i].user.name;
-      //   document.querySelector('.for-bio').textContent = json[i].user.bio;
-      //   document.querySelector('.for-text').textContent = json[i].text;
-      //   const posts_prime = document.querySelector('.posted-item').cloneNode(true);
-      //   document.querySelector('.timeline').appendChild(posts_prime);
-      // }
     })
     .catch(error => {
       console.error(error);
     })
-
+    // ロード時にユーザー一覧表示
     const usersParamas = {
       page: '',
       limit: 5,
@@ -129,6 +110,66 @@
       console.error(error);
     })
 
+    // ロード時にフォロー中表示
+    fetch(`${usersUrl}/${localStorage.id}/followings`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      }
+    }).then(response => response.json())
+    .then(json => {
+      console.log(json);
+      let followings = '';
+      json.forEach(element => {
+        followings +=
+          `
+          <div class="posted-item">
+            <div class="for-img"></div>
+            <div class="for-post">
+              <div class="for-name-bio">
+                <span class="for-name">${element.name}</span>
+                <span class="for-bio">${element.bio}</span>
+              </div>
+              <div class="for-text"></div>
+            </div>
+          </div>`;
+      });
+      document.querySelector('.tab_follower').innerHTML = followings;
+    })
+    .catch(error => {
+      console.error(error);
+    })
+    // ロード時にフォロワー表示
+    fetch(`${usersUrl}/${localStorage.id}/followers`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      }
+    }).then(response => response.json())
+    .then(json => {
+      console.log(json);
+      let followers = '';
+      json.forEach(element => {
+        followers +=
+          `
+          <div class="posted-item">
+            <div class="for-img"></div>
+            <div class="for-post">
+              <div class="for-name-bio">
+                <span class="for-name">${element.name}</span>
+                <span class="for-bio">${element.bio}</span>
+              </div>
+              <div class="for-text"></div>
+            </div>
+          </div>`;
+      });
+      document.querySelector('.tab_follower').innerHTML = followers;
+    })
+    .catch(error => {
+      console.error(error);
+    })
 
   };
 
