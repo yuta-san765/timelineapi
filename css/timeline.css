@@ -242,6 +242,7 @@ body {
   border-bottom: solid 1px #37444c;
   padding-bottom: 10px;
   display: flex;
+
 }
 .for-name {
   font-weight: 700;
@@ -444,3 +445,21 @@ form input {
   color: white;
 }
 
+.follow_btn {
+  margin-top: 25px;
+  border: 1px solid rgb(24, 190, 99);
+  color: rgb(24, 190, 99);
+  background-color: rgba(24, 190, 99, 0);
+  width: 78px;
+  height: 30px;
+  display: block;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+.follow_btn:hover {
+  cursor: pointer;
+  background-color: rgba(24, 190, 99, 0.8);
+  color: white;
+}

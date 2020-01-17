@@ -1,49 +1,49 @@
 'use strict';
-{
-  // modal for uer edit
-  function popupImage() {
-    var popup = document.getElementById('js-popup');
-    if(!popup) return;
 
-    var blackBg = document.getElementById('js-black-bg');
-    var closeBtn = document.getElementById('js-close-btn');
-    var showBtn = document.getElementById('js-show-popup');
+// modal for uer edit
+function popupImage() {
+  var popup = document.getElementById('js-popup');
+  if (!popup) return;
 
-    closePopUp(blackBg);
-    closePopUp(closeBtn);
-    closePopUp(showBtn);
-    function closePopUp(elem) {
-      if(!elem) return;
-      elem.addEventListener('click', function() {
-        popup.classList.toggle('is-show');
-      });
-    }
+  var blackBg = document.getElementById('js-black-bg');
+  var closeBtn = document.getElementById('js-close-btn');
+  var showBtn = document.getElementById('js-show-popup');
+
+  closePopUp(blackBg);
+  closePopUp(closeBtn);
+  closePopUp(showBtn);
+  function closePopUp(elem) {
+    if (!elem) return;
+    elem.addEventListener('click', function () {
+      popup.classList.toggle('is-show');
+    });
   }
-  popupImage();
-  // エンドポイントの用意
-  const postsUrl = 'https://teachapi.herokuapp.com/posts';
-  const usersUrl = 'https://teachapi.herokuapp.com/users';
+}
+popupImage();
+// エンドポイントの用意
+const postsUrl = 'https://teachapi.herokuapp.com/posts';
+const usersUrl = 'https://teachapi.herokuapp.com/users';
 
 
-  // ロード時の表示
-  window.onload = function(){
-    // ロード時に投稿表示
-    const postsParamas = {
-      page: 1,
-      limit: '',
-      query: ''
-    };
-    const postsQs = new URLSearchParams(postsParamas);
-    fetch(`${postsUrl}?${postsQs}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.token
-      }
-    }).then(response => {
-      console.log(response);
-      return response.json();
-    })
+// ロード時の表示
+window.onload = function () {
+  // ロード時に投稿表示
+  const postsParamas = {
+    page: 1,
+    limit: '',
+    query: ''
+  };
+  const postsQs = new URLSearchParams(postsParamas);
+  fetch(`${postsUrl}?${postsQs}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    }
+  }).then(response => {
+    console.log(response);
+    return response.json();
+  })
     .then(json => {
       // console.log(json);
       let timeLine = '';
@@ -69,23 +69,23 @@
     .catch(error => {
       console.error(error);
     })
-    // ロード時にユーザー一覧表示
-    const usersParamas = {
-      page: '',
-      limit: 5,
-      query: ''
-    };
-    const usersQs = new URLSearchParams(usersParamas);
-    fetch(`${usersUrl}?${usersQs}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.token
-      }
-    }).then(response => {
-      console.log(response);
-      return response.json();
-    })
+  // ロード時にユーザー一覧表示
+  const usersParamas = {
+    page: '',
+    limit: 5,
+    query: ''
+  };
+  const usersQs = new URLSearchParams(usersParamas);
+  fetch(`${usersUrl}?${usersQs}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    }
+  }).then(response => {
+    console.log(response);
+    return response.json();
+  })
     .then(json => {
       console.log(json);
       let usersAll = '';
@@ -101,8 +101,8 @@
               </div>
               <div class="for-text"></div>
             </div>
+            <button type="submit" class="follow_btn" onclick="follow(${element.id});">follow</button>
           </div>`;
-
       });
       document.querySelector('.tab_users').innerHTML = usersAll;
     })
@@ -110,14 +110,14 @@
       console.error(error);
     })
 
-    // ロード時にフォロー中表示
-    fetch(`${usersUrl}/${localStorage.id}/followings`,{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.token
-      }
-    }).then(response => response.json())
+  // ロード時にフォロー中表示
+  fetch(`${usersUrl}/${localStorage.id}/followings`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    }
+  }).then(response => response.json())
     .then(json => {
       console.log(json);
       let followings = '';
@@ -135,19 +135,19 @@
             </div>
           </div>`;
       });
-      document.querySelector('.tab_follower').innerHTML = followings;
+      document.querySelector('.tab_following').innerHTML = followings;
     })
     .catch(error => {
       console.error(error);
     })
-    // ロード時にフォロワー表示
-    fetch(`${usersUrl}/${localStorage.id}/followers`,{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.token
-      }
-    }).then(response => response.json())
+  // ロード時にフォロワー表示
+  fetch(`${usersUrl}/${localStorage.id}/followers`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    }
+  }).then(response => response.json())
     .then(json => {
       console.log(json);
       let followers = '';
@@ -171,24 +171,24 @@
       console.error(error);
     })
 
-  };
+};
 
-  // 投稿作成
-  document.getElementById('post_submit').addEventListener('click', (e) => {
-    e.preventDefault();
-    const postParams = {
-      post_params: {
-        text: document.getElementById('post_text').value
-      }
-    };
-    fetch(postsUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.token
-      },
-      body: JSON.stringify(postParams)
-    }).then(response => response.json())
+// 投稿作成
+document.getElementById('post_submit').addEventListener('click', (e) => {
+  e.preventDefault();
+  const postParams = {
+    post_params: {
+      text: document.getElementById('post_text').value
+    }
+  };
+  fetch(postsUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    },
+    body: JSON.stringify(postParams)
+  }).then(response => response.json())
     .then(json => {
       console.log(json);
       window.alert('投稿しました');
@@ -196,84 +196,77 @@
     }).catch(error => {
       console.error(error);
     })
-  });
+});
 
-    // ユーザー編集
-    const usersEditUrl = `${usersUrl}/${localStorage.id}`;
-    document.getElementById('users_edit_submit').addEventListener('click', (e) => {
-      e.preventDefault();
-      const userEditParams = {
-        user_params: {
-          name: document.getElementById('users_edit_name').value,
-          bio: document.getElementById('users_edit_bio').value
-        }
-      };
-      fetch(usersEditUrl, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + localStorage.token
-        },
-        body: JSON.stringify(userEditParams)
-      }).then(response => response.json())
+// ユーザー編集
+const usersEditUrl = `${usersUrl}/${localStorage.id}`;
+document.getElementById('users_edit_submit').addEventListener('click', (e) => {
+  e.preventDefault();
+  const userEditParams = {
+    user_params: {
+      name: document.getElementById('users_edit_name').value,
+      bio: document.getElementById('users_edit_bio').value
+    }
+  };
+  fetch(usersEditUrl, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    },
+    body: JSON.stringify(userEditParams)
+  }).then(response => response.json())
+    .then(json => {
+      console.log(json);
+
+    }).catch(error => {
+      console.error(error);
+    })
+});
+
+// ユーザー削除
+document.getElementById('users_delete_submit').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (window.confirm('本当に削除してよろしいですか？')) {
+    fetch(usersEditUrl, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      }
+    }).then(response => response.json())
       .then(json => {
-        console.log(json);
-
+        console.log(json)
+        window.alert('ご利用ありがとうございました');
+        location.href = 'index.html';
       }).catch(error => {
         console.error(error);
       })
-    });
+  } else {
+    window.alert('引き続きお楽しみ下さい');
+    location.href = 'timeline.html';
+  }
+});
 
-    // ユーザー削除
-    document.getElementById('users_delete_submit').addEventListener('click', (e) => {
-      e.preventDefault();
-      if (window.confirm('本当に削除してよろしいですか？')) {
-        fetch(usersEditUrl, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.token
-          }
-        }).then(response => response.json())
-        .then(json => {
-          console.log(json)
-          window.alert('ご利用ありがとうございました');
-          location.href = 'index.html';
-        }).catch(error => {
-          console.error(error);
-        })
-      } else {
-        window.alert('引き続きお楽しみ下さい');
-        location.href = 'timeline.html';
-      }
-    });
 
-  // ロード時にユーザー一覧表示
-  // window.onload = function(){
-    
-  // };
+// フォローボタン操作
+function follow(id) {
+  alert(`follow(${id})`)
+  const followUrl = `https://teachapi.herokuapp.com/users/${id}/follow`;
+  fetch(followUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    }
+  }).then(response => response.json())
+    .then(json => {
+      console.log(json);
+    })
+    .catch(error => {
+      console.error(error);
+    })
 
-  // document.getElementById('users_submit').addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   const usersParams = {
-  //     pages: document.getElementById('users_page').value,
-  //     limit: document.getElementById('users_limit').value,
-  //     query: document.getElementById('users_query').value
-  //   };
-  //   const usersQS = new URLSearchParams(usersParams);
-  //   fetch(`${urlUsers}?${usersQS}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': 'Bearer ' + localStorage.token
-  //     }
-  //   }).then(response => response.json())
-  //   .then(json => {
-  //     console.log(json);
-  //     document.querySelector('.users p').textContent = JSON.stringify(json);
-  //   }).catch(error => {
-  //     console.error(error);
-  //   })
-  // });
 
-}
+
+};
