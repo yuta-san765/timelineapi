@@ -45,7 +45,7 @@ window.onload = function () {
     return response.json();
   })
     .then(json => {
-      // console.log(json);
+      console.log(json);
       let timeLine = '';
       json.forEach(element => {
         // console.log(element);
@@ -90,8 +90,24 @@ window.onload = function () {
       console.log(json);
       let usersAll = '';
       json.forEach(element => {
-        usersAll +=
-          `
+        if (element.is_following) {
+
+          usersAll +=
+            `
+            <div class="posted-item">
+              <div class="for-img"></div>
+              <div class="for-post">
+                <div class="for-name-bio">
+                  <span class="for-name">${element.name}</span>
+                  <span class="for-bio">${element.bio}</span>
+                </div>
+                <div class="for-text"></div>
+              </div>
+              <button type="submit" class="unfollow_btn" onclick="unfollow(${element.id});">unfollow</button>
+            </div>`;
+        } else {
+          usersAll +=
+            `
           <div class="posted-item">
             <div class="for-img"></div>
             <div class="for-post">
@@ -103,6 +119,7 @@ window.onload = function () {
             </div>
             <button type="submit" class="follow_btn" onclick="follow(${element.id});">follow</button>
           </div>`;
+        }
       });
       document.querySelector('.tab_users').innerHTML = usersAll;
     })
@@ -133,6 +150,7 @@ window.onload = function () {
               </div>
               <div class="for-text"></div>
             </div>
+            <button type="submit" class="unfollow_btn" onclick="unfollow(${element.id});">unfollow</button>
           </div>`;
       });
       document.querySelector('.tab_following').innerHTML = followings;
@@ -163,6 +181,7 @@ window.onload = function () {
               </div>
               <div class="for-text"></div>
             </div>
+            <button type="submit" class="follow_btn" onclick="follow(${element.id});">follow</button>
           </div>`;
       });
       document.querySelector('.tab_follower').innerHTML = followers;
@@ -170,7 +189,45 @@ window.onload = function () {
     .catch(error => {
       console.error(error);
     })
-
+    // ロード時に自分のタイムラインを表示
+    const timelineParamas = {
+      page: 1,
+      limit: '',
+      query: ''
+    };
+    const timelineQs = new URLSearchParams(timelineParamas);
+    fetch(`${usersUrl}/${localStorage.id}/timeline?${timelineQs}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      }
+    }).then(response => response.json())
+      .then(json => {
+        console.log(json);
+        let userTimeline = '';
+        json.forEach(element => {
+          userTimeline +=
+            `
+            <div class="posted-item">
+              <div class="for-img"></div>
+              <div class="for-post">
+                <div class="for-name-bio">
+                  <span class="for-name">${element.user.name}</span>
+                  <span class="for-bio">${element.user.bio}</span>
+                </div>
+                <div class="for-text">${element.text}</div>
+              </div>
+              <i class="far fa-edit cursor-pointer icon-post" onclick="postEdit(${element.id});"></i>
+              <i class="far fa-trash-alt cursor-pointer icon-post" onclick="postDelete(${element.id});"></i>
+            </div>`;
+        });
+        document.querySelector('.tab_user_timeline').innerHTML = userTimeline;
+      })
+      .catch(error => {
+        console.error(error);
+      })
+  
 };
 
 // 投稿作成
@@ -218,7 +275,7 @@ document.getElementById('users_edit_submit').addEventListener('click', (e) => {
   }).then(response => response.json())
     .then(json => {
       console.log(json);
-
+      location.href = 'timeline.html';
     }).catch(error => {
       console.error(error);
     })
@@ -251,7 +308,7 @@ document.getElementById('users_delete_submit').addEventListener('click', (e) => 
 
 // フォローボタン操作
 function follow(id) {
-  alert(`follow(${id})`)
+  alert('フォローしました');
   const followUrl = `https://teachapi.herokuapp.com/users/${id}/follow`;
   fetch(followUrl, {
     method: 'POST',
@@ -266,7 +323,25 @@ function follow(id) {
     .catch(error => {
       console.error(error);
     })
+};
 
-
-
+//フォロー解除ボタン操作
+function unfollow(id) {
+  // alert(`unfollow${id}`);
+  const followUrl = `https://teachapi.herokuapp.com/users/${id}/follow`;
+  fetch(followUrl, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.token
+    }
+  })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      alert('フォロー解除しました');
+    })
+    .catch(error => {
+      console.error(error);
+    })
 };

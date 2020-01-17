@@ -20,14 +20,17 @@
             <a href="timeline.html"><img class="logo-icon" src="../img/code.png"></a>
           </div>
           <div class="side-links">
-            <div>
-              <a href="timeline.html"><i class="fas fa-home icon">&ensp;Timeline</i></a>
-            </div>
-            <div>
-              <a href="chatroom.html"><i class="fas fa-comments icon">&ensp;Chatroom</i></a>
-            </div>
-            <div>
-              <i class="fas fa-cog cursor-pointer icon" id="js-show-popup">&ensp;User&nbsp;Edit</i>
+            <a href="timeline.html" class="flex">
+              <i class="fas fa-home icon"></i>
+              <span class="icon-text">Timeline</span>
+            </a>
+            <a class="flex" href="chatroom.html">
+              <i class="fas fa-comments icon"></i>
+              <span class="icon-text">Chatroom</span>
+            </a>
+            <div class="flex flex-cog" id="js-show-popup">
+              <i class="fas fa-cog cursor-pointer icon"></i>
+              <span class="icon-text cursor-pointer">User&nbsp;Edit</span>
             </div>
           </div>
         </nav>
@@ -75,6 +78,13 @@
             <div class="tab_content_description tab_follower">
               <!-- <p class="c-txtsp">フォロワーの内容がここに入ります</p> -->
             </div>
+          </div>
+        </div>
+        <!-- <label class="tab_item tab_left" for="" style="border-bottom: none;">あなたの投稿</label> -->
+        <div class="tabs_modified">
+          <div class="user_timeline_header">あなたの投稿</div>
+          <div class="tab_content_description tab_user_timeline">
+            <!-- 自身のタイムラインがここに入る -->
           </div>
         </div>
       </div>
