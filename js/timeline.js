@@ -227,7 +227,6 @@ window.onload = function () {
       .catch(error => {
         console.error(error);
       })
-  
 };
 
 // 投稿作成
@@ -344,4 +343,27 @@ function unfollow(id) {
     .catch(error => {
       console.error(error);
     })
+};
+
+// 投稿削除
+function postDelete(postId) {
+  const postUrlId = `${postsUrl}/${postId}`;
+  if (window.confirm('投稿を削除しますか？')){
+
+    fetch (postUrlId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      }
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      alert('投稿を削除しました');
+    })
+    .catch(error => {
+      console.error(error);
+    })
+  }
 };
