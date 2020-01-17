@@ -27,11 +27,13 @@
 
   // ロード時にタイムライン表示
   window.onload = function(){
+
     const postsParamas = {
       page: 1,
       limit: '',
       query: ''
     };
+    
     const postsQs = new URLSearchParams(postsParamas);
     fetch(`${postsUrl}?${postsQs}`, {
       method: 'GET',
@@ -86,6 +88,48 @@
     .catch(error => {
       console.error(error);
     })
+
+    const usersParamas = {
+      page: '',
+      limit: 5,
+      query: ''
+    };
+    const usersQs = new URLSearchParams(usersParamas);
+    fetch(`${usersUrl}?${usersQs}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.token
+      }
+    }).then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .then(json => {
+      console.log(json);
+      let usersAll = '';
+      json.forEach(element => {
+        usersAll +=
+          `
+          <div class="posted-item">
+            <div class="for-img"></div>
+            <div class="for-post">
+              <div class="for-name-bio">
+                <span class="for-name">${element.name}</span>
+                <span class="for-bio">${element.bio}</span>
+              </div>
+              <div class="for-text"></div>
+            </div>
+          </div>`;
+
+      });
+      document.querySelector('.tab_users').innerHTML = usersAll;
+    })
+    .catch(error => {
+      console.error(error);
+    })
+
+
   };
 
   // 投稿作成
@@ -162,5 +206,33 @@
         location.href = 'timeline.html';
       }
     });
-  
+
+  // ロード時にユーザー一覧表示
+  // window.onload = function(){
+    
+  // };
+
+  // document.getElementById('users_submit').addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   const usersParams = {
+  //     pages: document.getElementById('users_page').value,
+  //     limit: document.getElementById('users_limit').value,
+  //     query: document.getElementById('users_query').value
+  //   };
+  //   const usersQS = new URLSearchParams(usersParams);
+  //   fetch(`${urlUsers}?${usersQS}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Bearer ' + localStorage.token
+  //     }
+  //   }).then(response => response.json())
+  //   .then(json => {
+  //     console.log(json);
+  //     document.querySelector('.users p').textContent = JSON.stringify(json);
+  //   }).catch(error => {
+  //     console.error(error);
+  //   })
+  // });
+
 }

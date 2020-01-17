@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
   <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-  <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+  <!-- <link href="https://unpkg.com/sanitize.css" rel="stylesheet" /> -->
   <link rel="stylesheet" href="../css/timeline.css">
   <title>デザイン込API | タイムライン</title>
 </head>
@@ -21,13 +21,13 @@
           </div>
           <div class="side-links">
             <div>
-              <a href="timeline.html"><i class="fas fa-home">&ensp;Timeline</i></a>
+              <a href="timeline.html"><i class="fas fa-home icon">&ensp;Timeline</i></a>
             </div>
             <div>
-              <a href="chatroom.html"><i class="fas fa-comments">&ensp;Chatroom</i></a>
+              <a href="chatroom.html"><i class="fas fa-comments icon">&ensp;Chatroom</i></a>
             </div>
             <div>
-              <i class="fas fa-cog cursor-pointer" id="js-show-popup">&ensp;User&nbsp;Edit</i>
+              <i class="fas fa-cog cursor-pointer icon" id="js-show-popup">&ensp;User&nbsp;Edit</i>
             </div>
           </div>
         </nav>
@@ -50,7 +50,33 @@
           </div>
         </div>
       </div>
-      <div class="column right-column">あ
+      <div class="column right-column">
+        <div class="users_search">
+          <form id="users_search" ></form>
+        </div>
+        <div class="tabs">
+          <input id="users_all" type="radio" name="tab_item" checked>
+          <label class="tab_item tab_left" for="users_all">最新ユーザー</label>
+          <input id="following" type="radio" name="tab_item">
+          <label class="tab_item tab_center" for="following">フォロー中</label>
+          <input id="follower" type="radio" name="tab_item">
+          <label class="tab_item tab_right" for="follower">フォロワー</label>
+          <div class="tab_content" id="users_all_content">
+            <div class="tab_content_description tab_users">
+              <!-- <p class="c-txtsp">ユーザー一覧の内容がここに入ります</p> -->
+            </div>
+          </div>
+          <div class="tab_content" id="following_content">
+            <div class="tab_content_description tab_following">
+              <!-- <p class="c-txtsp">フォロー中の内容がここに入ります</p> -->
+            </div>
+          </div>
+          <div class="tab_content" id="follower_content">
+            <div class="tab_content_description tab_follower">
+              <!-- <p class="c-txtsp">フォロワーの内容がここに入ります</p> -->
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>

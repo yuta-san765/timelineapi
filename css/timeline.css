@@ -144,6 +144,10 @@ body {
 .side-links {
   margin-top: 2px;
   margin-bottom: 5px;
+}
+
+.icon {
+  height: 30px;
 
 }
 
@@ -251,6 +255,70 @@ body {
 
 .for-text {
   font-weight: 400;
+}
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 62px;
+  margin-left: 30px;
+  max-width: 350px;
+  background-color: rgb(25, 39, 52);
+  border-radius: 25px;
+  max-height: 540px;
+  padding-bottom: 50px;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/3);
+  height: 45px;
+  border-bottom: 1px solid rgb(24, 190, 99);
+  background-color: rgb(25, 39, 52);
+  line-height: 45px;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  display: block;
+  float: left;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.8;
+}
+
+.tab_left {
+  border-radius: 25px 0 0 0 ;
+}
+
+.tab_right {
+  border-radius: 0 25px 0 0;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  clear: both;
+  overflow: hidden;
+}
+
+
+/*選択されているタブのコンテンツのみを表示*/
+#users_all:checked ~ #users_all_content,
+#following:checked ~ #following_content,
+#follower:checked ~ #follower_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: rgb(24, 190, 99);
+  color: #fff;
 }
 
 /* modal for user edit */
