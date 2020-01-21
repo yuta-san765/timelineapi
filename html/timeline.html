@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr" style="font-size: 15px;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  <!-- <link href="https://unpkg.com/sanitize.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="../css/timeline.css">
+  <title>デザイン込API | タイムライン</title>
+</head>
+<body>
+  <div class="root-container">
+    <div class="flex-containers">
+
+      <div class="column left-column">
+        <nav class="side-items">
+          <div class="logo-icon-container">
+            <a href="timeline.html"><img class="logo-icon" src="../img/code.png"></a>
+          </div>
+          <div class="side-links">
+            <a href="timeline.html" class="flex">
+              <i class="fas fa-home icon"></i>
+              <span class="icon-text">Timeline</span>
+            </a>
+            <a class="flex" href="chatroom.html">
+              <i class="fas fa-comments icon"></i>
+              <span class="icon-text">Chatroom</span>
+            </a>
+            <div class="flex flex-cog" id="js-show-popup">
+              <i class="fas fa-cog cursor-pointer icon"></i>
+              <span class="icon-text cursor-pointer">User&nbsp;Edit</span>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="column center-column">
+        <div class="center-column-contents">
+          <div class="top-line">
+            <h1>Home</h1>
+          </div>
+          <div class="post-box">
+            <div class="picture-circle"></div>
+            <div class="form-wrapper">
+              <form id="post">
+                <textarea class="post-text" id="post_text" name="post" cols="100" rows="4" maxlength="140" placeholder="what's happening?"></textarea>
+                <button class="btn btn-post" type="submit" id="post_submit">POST</button>
+              </form>
+            </div>
+          </div>
+          <div class="timeline">
+          </div>
+        </div>
+      </div>
+      <div class="column right-column">
+        <div class="users_search">
+          <form id="users_search" ></form>
+        </div>
+        <div class="tabs">
+          <input id="users_all" type="radio" name="tab_item" checked>
+          <label class="tab_item tab_left" for="users_all">最新ユーザー</label>
+          <input id="following" type="radio" name="tab_item">
+          <label class="tab_item tab_center" for="following">フォロー中</label>
+          <input id="follower" type="radio" name="tab_item">
+          <label class="tab_item tab_right" for="follower">フォロワー</label>
+          <div class="tab_content" id="users_all_content">
+            <div class="tab_content_description tab_users">
+              <!-- <p class="c-txtsp">ユーザー一覧の内容がここに入ります</p> -->
+            </div>
+          </div>
+          <div class="tab_content" id="following_content">
+            <div class="tab_content_description tab_following">
+              <!-- <p class="c-txtsp">フォロー中の内容がここに入ります</p> -->
+            </div>
+          </div>
+          <div class="tab_content" id="follower_content">
+            <div class="tab_content_description tab_follower">
+              <!-- <p class="c-txtsp">フォロワーの内容がここに入ります</p> -->
+            </div>
+          </div>
+        </div>
+        <!-- <label class="tab_item tab_left" for="" style="border-bottom: none;">あなたの投稿</label> -->
+        <div class="tabs_modified">
+          <div class="user_timeline_header">あなたの投稿</div>
+          <div class="tab_content_description tab_user_timeline">
+            <!-- 自身のタイムラインがここに入る -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- modal for user edit -->
+  <div class="popup" id="js-popup">
+    <div class="popup-inner">
+      <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+      <form action="" id="user_edit">
+        <span style="color: #8899a6;">You can edit your profile</span>
+        <div class="input-cover">
+          <label class="input-label" for="users_edit_name">
+            <div class="input-indication">
+              <span>new name</span>
+            </div>
+            <div class="input-area">
+              <input type="text" id="users_edit_name" placeholder="name" required>
+            </div>
+          </label>
+        </div>
+        <div class="input-cover">
+          <label class="input-label" for="users_edit_bio">
+            <div class="input-indication">
+              <span>new biology</span>
+            </div>
+            <div class="input-area">
+              <input type="text" id="users_edit_bio" placeholder="biology" required>
+            </div>
+          </label>
+        </div>
+        <div class="btn-cover">
+          <button class="users_edit_button" type="submit" id="users_edit_submit">更新します</button>
+        </div>
+      </form>
+      <br>
+      <br>
+      <span style="color: #8899a6;">Delete account?</span>
+      <button class="btn-cover" type="submit" id="users_delete_submit">Are you sure?</button>
+    </div>
+    <div class="black-background" id="js-black-bg"></div>
+  </div>
+  <!-- modal for post edit -->
+  <div class="popup" id="js-popup-post-edit">
+    <div class="popup-inner">
+      <div class="close-btn" id="js-close-btn-post-edit"><i class="fas fa-times"></i></div>
+      <form action="">
+        <span>投稿を編集できます</span>
+        <div class="input-cover">
+          <label class="input-label" for="users_edit_bio">
+            <div class="input-indication">
+            </div>
+            <div class="input-area">
+              <input type="text" id="users_post_edit" required>
+            </div>
+          </label>
+        </div>
+        <div class="btn-cover">
+          <button class="users_edit_button" type="submit" id="users_post_edit_submit">更新します</button>
+        </div>
+
+      </form>
+    </div>
+    <div class="black-background" id="js-black-bg-post-edit"></div>
+  </div>
+  <script src="../js/timeline.js"></script>
+</body>
+</html>
